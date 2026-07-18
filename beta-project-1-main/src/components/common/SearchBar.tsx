@@ -45,13 +45,13 @@ const SearchBar = ({ onSelect, onUseLocation, loading }: SearchBarProps) => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && runSearch()}
           placeholder="Search for a city…"
-          className="flex-1 rounded-lg border border-slate-300 bg-white/90 px-4 py-2.5 text-slate-800 shadow-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          className="flex-1 rounded-lg border border-white/40 bg-white/70 px-4 py-2.5 text-slate-800 shadow-sm outline-none backdrop-blur-sm focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/40 dark:border-white/10 dark:bg-emerald-950/30 dark:text-slate-100"
         />
         <button
           type="button"
           onClick={runSearch}
           disabled={searching || loading}
-          className="rounded-lg bg-teal-500 px-4 py-2.5 font-semibold text-slate-900 transition-colors hover:bg-teal-300 disabled:opacity-60"
+          className="rounded-lg bg-emerald-700 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-emerald-600 disabled:opacity-60"
         >
           {searching ? '…' : 'Search'}
         </button>
@@ -59,10 +59,10 @@ const SearchBar = ({ onSelect, onUseLocation, loading }: SearchBarProps) => {
           type="button"
           onClick={onUseLocation}
           disabled={loading}
-          className="group rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 transition-all hover:bg-slate-100 disabled:opacity-60 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+          className="group rounded-lg border border-white/40 bg-white/70 px-4 py-2.5 font-semibold text-slate-700 backdrop-blur-sm transition-all hover:bg-white/90 disabled:opacity-60 dark:border-white/10 dark:bg-emerald-950/30 dark:text-slate-200 dark:hover:bg-emerald-950/50"
         >
           <MapPinned
-            className="text-teal-400 transition-transform group-hover:scale-115"
+            className="text-emerald-600 transition-transform group-hover:scale-115 dark:text-emerald-400"
           />
         </button>
       </div>
@@ -70,13 +70,13 @@ const SearchBar = ({ onSelect, onUseLocation, loading }: SearchBarProps) => {
       {error && <p className="mt-2 text-sm text-rose-500">{error}</p>}
 
       {results.length > 0 && (
-        <ul className="absolute z-20 mt-2 w-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
+        <ul className="glass-panel-strong absolute z-20 mt-2 w-full overflow-hidden rounded-lg shadow-lg">
           {results.map((loc, i) => (
             <li key={`${loc.latitude}-${loc.longitude}-${i}`}>
               <button
                 type="button"
                 onClick={() => pick(loc)}
-                className="block w-full px-4 py-2.5 text-left text-slate-700 transition-colors hover:bg-teal-50 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="block w-full px-4 py-2.5 text-left text-slate-700 transition-colors hover:bg-emerald-50 dark:text-slate-200 dark:hover:bg-emerald-950/40"
               >
                 {loc.name}
                 <span className="text-slate-400"> {loc.admin1 ? `, ${loc.admin1}` : ''}, {loc.country}</span>
