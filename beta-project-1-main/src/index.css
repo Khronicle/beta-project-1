@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 html,
@@ -15,4 +21,43 @@ body {
   font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Matches .glass-nav's opaque tone — any edge not painted by the page's own
+     gradient (overscroll bounce, native Canvas peeking through) blends with
+     the navigation bar's background instead of showing a stray dark/gray rim. */
+  background-color: #042f24;
 }
+
+/* Glassmorphism surface: frosted white fill over the dark-green page backdrop. */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-panel {
+  background: rgba(6, 78, 59, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.glass-panel-strong {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-panel-strong {
+  background: rgba(4, 47, 36, 0.72);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* Dark-green frosted glass for surfaces that carry light text regardless of
+   theme (nav bar, toasts) — stays legible in both light and dark mode. */
+.glass-nav {
+  background: rgba(4, 47, 36, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+

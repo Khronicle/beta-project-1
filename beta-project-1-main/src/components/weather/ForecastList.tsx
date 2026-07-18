@@ -11,9 +11,9 @@ const formatDay = (date: string) => {
 };
 
 const ForecastList = ({ days }: ForecastListProps) => (
-  <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+  <section className="glass-panel rounded-2xl p-4 shadow-sm">
     <h3 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">Forecast</h3>
-    <ul className="divide-y divide-slate-100 dark:divide-slate-800">
+    <ul className="divide-y divide-slate-200/60 dark:divide-white/10">
       {days.map((day) => {
         const { icon, label } = describeWeather(day.code);
         return (
